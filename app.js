@@ -33,18 +33,20 @@ var createNewTaskElement=function(taskString){
     var deleteButtonImg=document.createElement("img");//delete button image
 
     label.innerText=taskString;
-    label.className='task';
-
+    label.className='task-label task';
+    listItem.className='li-item'
     //Each elements, needs appending
     checkBox.type="checkbox";
+    checkBox.className = "completion";
     editInput.type="text";
-    editInput.className="task";
+    editInput.className="input-task task";
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-    editButton.className="edit";
+    editButton.className="button edit";
 
-    deleteButton.className="delete";
+    deleteButton.className="button delete";
     deleteButtonImg.src='./remove.svg';
+    deleteButtonImg.className='delete-icon'
     deleteButton.appendChild(deleteButtonImg);
 
 
@@ -193,3 +195,5 @@ for (var i=0; i<completedTasksHolder.children.length;i++){
 //prevent creation of empty tasks.
 
 //Change edit to save when you are in edit mode.
+
+alert("в пункте 3.4 ul, li, h3, input в стилях считаю как обнуление дефолтных.")
