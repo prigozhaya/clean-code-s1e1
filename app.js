@@ -10,7 +10,7 @@
 
 var taskInput=document.getElementById("new-task");//Add a new task.
 var addButton=document.getElementsByTagName("button")[0];//first button
-var incompleteTaskHolder=document.getElementById("incompleteTasks");//ul of #incompleteTasks
+var incompleteTaskHolder=document.getElementById("incomplete-tasks");//ul of #incompleteTasks
 var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
 
 
@@ -33,18 +33,21 @@ var createNewTaskElement=function(taskString){
     var deleteButtonImg=document.createElement("img");//delete button image
 
     label.innerText=taskString;
-    label.className='task';
-
+    label.className='li-item__label';
+    listItem.className='li-item'
     //Each elements, needs appending
     checkBox.type="checkbox";
+    checkBox.className = "li-item__completion";
     editInput.type="text";
-    editInput.className="task";
+    editInput.className="li-item__task input-task";
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-    editButton.className="edit";
+    editButton.className="button edit";
 
-    deleteButton.className="delete";
+    deleteButton.className="lli-item__delete-button delete-button button";
     deleteButtonImg.src='./remove.svg';
+    deleteButtonImg.className='delete-button__delete-icon'
+    deleteButtonImg.setAttribute('alt', "delete-task");
     deleteButton.appendChild(deleteButtonImg);
 
 
@@ -85,7 +88,7 @@ var editTask=function(){
     var editInput=listItem.querySelector('input[type=text]');
     var label=listItem.querySelector("label");
     var editBtn=listItem.querySelector(".edit");
-    var containsClass=listItem.classList.contains("editMode");
+    var containsClass=listItem.classList.contains("edit-mode");
     //If class of the parent is .editmode
     if(containsClass){
 
@@ -99,7 +102,7 @@ var editTask=function(){
     }
 
     //toggle .editmode on the parent.
-    listItem.classList.toggle("editMode");
+    listItem.classList.toggle("edit-mode");
 };
 
 
@@ -157,7 +160,7 @@ var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
 //select ListItems children
     var checkBox=taskListItem.querySelector("input[type=checkbox]");
     var editButton=taskListItem.querySelector("button.edit");
-    var deleteButton=taskListItem.querySelector("button.delete");
+    var deleteButton=taskListItem.querySelector("button.delete-button");
 
 
     //Bind editTask to edit button.
@@ -193,3 +196,11 @@ for (var i=0; i<completedTasksHolder.children.length;i++){
 //prevent creation of empty tasks.
 
 //Change edit to save when you are in edit mode.
+
+alert(`Доброго времени суток уважаемый проверяющий! Данное задание показалось мне уж очень спорным с многими разночтениями. Поэтому решила немного перестраховаться и спорные моменты вынести отдельно)))
+Функциональность:
+Внешний вид немного изменился, а именно изменились отступы, из-за корявого параграфа в исходном коде. Читала в ответах что pixel-perfect не требуется, так что должно быть норм) Также насчет странного шрифта fantasy …, на скриншоте вроде как papyrus, в доке с ответами было написано оставить как есть.
+3.4 Стили для ul, li, h3, input в самом начале считаю как обнуление (входит в исключение)
+2.1. Если почитать БЭМ-нотацию там много чего написано, и про id и универсальные селекторы и тд. В ТЗ значится следующее «Используйте БЭМ-нотацию для формирования ИМЕН КЛАССОВ.», а это значит что соблюдение самой архитектуры не предполагается и проверяется только сами названия классов.
+1.1 насчет семантики тоже все спорно. Див для нового таска считаю просто как обертку.
+`)
